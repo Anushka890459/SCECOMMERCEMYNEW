@@ -10,10 +10,14 @@ public class Product {
     private Long id;
 
     private String name;
-
     private String description;
-
     private double price;
+    private double discount;
+    private double specialPrice;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     // Constructors
     public Product() {}
@@ -25,6 +29,7 @@ public class Product {
     }
 
     // Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -57,9 +62,27 @@ public class Product {
         this.price = price;
     }
 
-    public void setImage(String image) {
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    public double getSpecialPrice() {
+        return specialPrice;
+    }
+
+    public void setSpecialPrice(double specialPrice) {
+        this.specialPrice = specialPrice;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
-
-
-
