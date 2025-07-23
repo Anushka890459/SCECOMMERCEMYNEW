@@ -7,9 +7,11 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long productId;
 
-    private String name;
+    private String productName;
+    private String image;
+    private String quantity;
     private String description;
     private double price;
     private double discount;
@@ -22,28 +24,44 @@ public class Product {
     // Constructors
     public Product() {}
 
-    public Product(String name, String description, double price) {
-        this.name = name;
+    public Product(String productName, String description, double price) {
+        this.productName = productName;
         this.description = description;
         this.price = price;
     }
 
     // Getters and Setters
 
-    public Long getId() {
-        return id;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
     public String getDescription() {

@@ -18,9 +18,9 @@ public class ProductController {
     @Autowired
     ProductService productService;
     @PostMapping("/admin/categories/{categoryId}/product")
-    public ResponseEntity<ProductDTO> addProduct(@RequestBody Product product, @PathVariable Long categoryId){
+    public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productDTO, @PathVariable Long categoryId){
 
-       ProductDTO productDTO = productService.addProduct(categoryId,product);
+       ProductDTO savedproductDTO = productService.addProduct(categoryId,productDTO);
        return  new ResponseEntity<>(productDTO, HttpStatus.CREATED);
     }
     @GetMapping("/public/products")
@@ -29,10 +29,28 @@ public class ProductController {
        return new ResponseEntity<>(productResponse,HttpStatus.OK);
     }
 
-    @GetMapping("/public/categories/{catgroryId}/products")
+
+    @GetMapping("/public/categories/{categoryId}/products")
     public ResponseEntity<ProductResponse> getProductsByCategory(@PathVariable Long categoryId){
-        ProductResponse productResponse=productService.searchByCategory(categoryId);
-        return new ResponseEntity<>(productResponse,HttpStatus.OK);
+      ProductResponse productResponse = productService.searchByCategory(categoryId);
+      return new ResponseEntity<>(productResponse, HttpStatus.OK);
+    }
+    @GetMapping("/public/products/keyword/{keyword}")
+    public ResponseEntity<ProductResponse> getProductsByKeyword(@PathVariable String keyword){
+      ProductResponse productResponse =productService.searchProductByKeyword(keyword);
+      return new ResponseEntity<>(productResponse,HttpStatus.FOUND);
+    }
+
+     @PutMapping("/admin/products/{productId}")
+    public ResponseEntity<ProductDTO> updateProduct(@RequestBody ProductDTO productDTO,@PathVariable Long productId){
+
+        ProductDTO updatedProductDTO = productService.updateProduct(productId,productDTO);
+         return new ResponseEntity<>(updatedProductDTO,HttpStatus.OK);
+    }
+    @DeleteMapping("/admin/products/{productId}")
+    public ResponseEntity<ProductDTO> deleteProduct(@PathVariable Long productId){
+        ProductDTO deletedProduct =productService.deleteProduct(productId);
+        return new ResponseEntity<>(deletedProduct,HttpStatus.OK);
     }
 
 }
