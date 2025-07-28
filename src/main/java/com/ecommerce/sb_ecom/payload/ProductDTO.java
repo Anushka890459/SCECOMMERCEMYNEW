@@ -49,5 +49,9 @@ public class ProductDTO {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public String getProductName() {
+        return null;
+    }
 }
 

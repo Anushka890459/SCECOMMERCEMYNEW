@@ -1,12 +1,12 @@
 package com.ecommerce.sb_ecom.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Data;
+
+import java.util.List;
+
 @Entity
 public class Category {
 
@@ -16,6 +16,11 @@ public class Category {
     //@NotBlank
 
     private String categoryName;
+
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Product> products;
+
 
     // Default constructor
     public Category() {}
@@ -35,6 +40,11 @@ public class Category {
     }
 
     public void setCategoryId(Long categoryId) {
+    }
+
+
+    public List<Product> getProducts() {
+        return products;
     }
 }
 
